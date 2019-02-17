@@ -28,7 +28,7 @@ public class Pattern {
                 for (int n = 0; n < 5; n++) {
                     final int b = this.data[data_offset++];
                     if (b == 0) {
-                        out.append("--");
+                        out.append("--"); //$NON-NLS-1$
                     } else {
                         out.append(hex[b >> 4 & 0xF]);
                         out.append(hex[b & 0xF]);

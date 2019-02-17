@@ -1,7 +1,7 @@
 package com.puttysoftware.audio.mod;
 
 public class Module {
-    public String songName = "Blank";
+    public String songName = "Blank"; //$NON-NLS-1$
     public int numChannels = 4, numInstruments = 1;
     public int numPatterns = 1, sequenceLength = 1, restartPos = 0;
     public int defaultGVol = 64, defaultSpeed = 6, defaultTempo = 125,
@@ -19,9 +19,9 @@ public class Module {
     }
 
     public Module(final byte[] moduleData) {
-        if (Module.isoLatin1(moduleData, 0, 17).equals("Extended Module: ")) {
+        if (Module.isoLatin1(moduleData, 0, 17).equals("Extended Module: ")) { //$NON-NLS-1$
             this.loadXM(moduleData);
-        } else if (Module.isoLatin1(moduleData, 44, 4).equals("SCRM")) {
+        } else if (Module.isoLatin1(moduleData, 44, 4).equals("SCRM")) { //$NON-NLS-1$
             this.loadS3M(moduleData);
         } else {
             this.loadMOD(moduleData);
@@ -63,7 +63,7 @@ public class Module {
             this.gain = 32;
             break;
         default:
-            throw new IllegalArgumentException("MOD Format not recognised!");
+            throw new IllegalArgumentException("MOD Format not recognised!"); //$NON-NLS-1$
         }
         this.defaultGVol = 64;
         this.defaultSpeed = 6;
@@ -167,7 +167,7 @@ public class Module {
         this.fastVolSlides = (flags & 0x40) == 0x40 || version == 0x1300;
         final boolean signedSamples = Module.ushortle(moduleData, 42) == 1;
         if (Module.intle(moduleData, 44) != 0x4d524353) {
-            throw new IllegalArgumentException("Not an S3M file!");
+            throw new IllegalArgumentException("Not an S3M file!"); //$NON-NLS-1$
         }
         this.defaultGVol = moduleData[48] & 0xFF;
         this.defaultSpeed = moduleData[49] & 0xFF;
@@ -225,7 +225,7 @@ public class Module {
                     & 0x4) == 0x4;
             if (packed) {
                 throw new IllegalArgumentException(
-                        "Packed samples not supported!");
+                        "Packed samples not supported!"); //$NON-NLS-1$
             }
             sample.c2Rate = Module.intle(moduleData, instOffset + 32);
             final short[] sampleData = new short[loopStart + loopLength];
@@ -340,11 +340,11 @@ public class Module {
     private void loadXM(final byte[] moduleData) {
         if (Module.ushortle(moduleData, 58) != 0x0104) {
             throw new IllegalArgumentException(
-                    "XM format version must be 0x0104!");
+                    "XM format version must be 0x0104!"); //$NON-NLS-1$
         }
         this.songName = Module.codePage850(moduleData, 17, 20);
         final boolean deltaEnv = Module.isoLatin1(moduleData, 38, 20)
-                .startsWith("DigiBooster Pro");
+                .startsWith("DigiBooster Pro"); //$NON-NLS-1$
         int dataOffset = 60 + Module.intle(moduleData, 60);
         this.sequenceLength = Module.ushortle(moduleData, 64);
         this.restartPos = Module.ushortle(moduleData, 66);
@@ -370,7 +370,7 @@ public class Module {
         for (int patIdx = 0; patIdx < this.numPatterns; patIdx++) {
             if (moduleData[dataOffset + 4] != 0) {
                 throw new IllegalArgumentException(
-                        "Unknown pattern packing type!");
+                        "Unknown pattern packing type!"); //$NON-NLS-1$
             }
             final int numRows = Module.ushortle(moduleData, dataOffset + 5);
             final int numNotes = numRows * this.numChannels;
@@ -575,7 +575,7 @@ public class Module {
     private static String codePage850(final byte[] buf, final int offset,
             final int len) {
         try {
-            final char[] str = new String(buf, offset, len, "Cp850")
+            final char[] str = new String(buf, offset, len, "Cp850") //$NON-NLS-1$
                     .toCharArray();
             for (int idx = 0; idx < str.length; idx++) {
                 str[idx] = str[idx] < 32 ? 32 : str[idx];
@@ -587,25 +587,25 @@ public class Module {
     }
 
     public void toStringBuffer(final StringBuffer out) {
-        out.append("Song Name: " + this.songName + '\n' + "Num Channels: "
-                + this.numChannels + '\n' + "Num Instruments: "
-                + this.numInstruments + '\n' + "Num Patterns: "
-                + this.numPatterns + '\n' + "Sequence Length: "
-                + this.sequenceLength + '\n' + "Restart Pos: " + this.restartPos
-                + '\n' + "Default Speed: " + this.defaultSpeed + '\n'
-                + "Default Tempo: " + this.defaultTempo + '\n'
-                + "Linear Periods: " + this.linearPeriods + '\n');
-        out.append("Sequence: ");
+        out.append("Song Name: " + this.songName + '\n' + "Num Channels: " //$NON-NLS-1$ //$NON-NLS-2$
+                + this.numChannels + '\n' + "Num Instruments: " //$NON-NLS-1$
+                + this.numInstruments + '\n' + "Num Patterns: " //$NON-NLS-1$
+                + this.numPatterns + '\n' + "Sequence Length: " //$NON-NLS-1$
+                + this.sequenceLength + '\n' + "Restart Pos: " + this.restartPos //$NON-NLS-1$
+                + '\n' + "Default Speed: " + this.defaultSpeed + '\n' //$NON-NLS-1$
+                + "Default Tempo: " + this.defaultTempo + '\n' //$NON-NLS-1$
+                + "Linear Periods: " + this.linearPeriods + '\n'); //$NON-NLS-1$
+        out.append("Sequence: "); //$NON-NLS-1$
         for (final int element : this.sequence) {
-            out.append(element + ", ");
+            out.append(element + ", "); //$NON-NLS-1$
         }
         out.append('\n');
         for (int patIdx = 0; patIdx < this.patterns.length; patIdx++) {
-            out.append("Pattern " + patIdx + ":\n");
+            out.append("Pattern " + patIdx + ":\n"); //$NON-NLS-1$ //$NON-NLS-2$
             this.patterns[patIdx].toStringBuffer(out);
         }
         for (int insIdx = 1; insIdx < this.instruments.length; insIdx++) {
-            out.append("Instrument " + insIdx + ":\n");
+            out.append("Instrument " + insIdx + ":\n"); //$NON-NLS-1$ //$NON-NLS-2$
             this.instruments[insIdx].toStringBuffer(out);
         }
     }

@@ -4,7 +4,7 @@ public class Sample {
     public static final int FP_SHIFT = 15, FP_ONE = 1 << Sample.FP_SHIFT,
             FP_MASK = Sample.FP_ONE - 1;
     public static final int C2_PAL = 8287, C2_NTSC = 8363;
-    public String name = "";
+    public String name = ""; //$NON-NLS-1$
     public int volume = 0, panning = -1, relNote = 0, fineTune = 0,
             c2Rate = Sample.C2_NTSC;
     private int loopStart = 0, loopLength = 0;
@@ -232,13 +232,13 @@ public class Sample {
     }
 
     public void toStringBuffer(final StringBuffer out) {
-        out.append("Name: " + this.name + '\n');
-        out.append("Volume: " + this.volume + '\n');
-        out.append("Panning: " + this.panning + '\n');
-        out.append("Relative Note: " + this.relNote + '\n');
-        out.append("Fine Tune: " + this.fineTune + '\n');
-        out.append("Loop Start: " + this.loopStart + '\n');
-        out.append("Loop Length: " + this.loopLength + '\n');
+        out.append("Name: " + this.name + '\n'); //$NON-NLS-1$
+        out.append("Volume: " + this.volume + '\n'); //$NON-NLS-1$
+        out.append("Panning: " + this.panning + '\n'); //$NON-NLS-1$
+        out.append("Relative Note: " + this.relNote + '\n'); //$NON-NLS-1$
+        out.append("Fine Tune: " + this.fineTune + '\n'); //$NON-NLS-1$
+        out.append("Loop Start: " + this.loopStart + '\n'); //$NON-NLS-1$
+        out.append("Loop Length: " + this.loopLength + '\n'); //$NON-NLS-1$
         /*
          * out.append( "Sample Data: " ); for( int idx = 0; idx <
          * sampleData.length; idx++ ) out.append( sampleData[ idx ] + ", " );

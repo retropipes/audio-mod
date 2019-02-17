@@ -37,17 +37,17 @@ public class Envelope {
     }
 
     public void toStringBuffer(final StringBuffer out) {
-        out.append("Enabled: " + this.enabled + '\n');
-        out.append("Sustain: " + this.sustain + '\n');
-        out.append("Looped: " + this.looped + '\n');
-        out.append("Sustain Tick: " + this.sustainTick + '\n');
-        out.append("Loop Start Tick: " + this.loopStartTick + '\n');
-        out.append("Loop End Tick: " + this.loopEndTick + '\n');
-        out.append("Num Points: " + this.numPoints + '\n');
-        out.append("Points: ");
+        out.append("Enabled: " + this.enabled + '\n'); //$NON-NLS-1$
+        out.append("Sustain: " + this.sustain + '\n'); //$NON-NLS-1$
+        out.append("Looped: " + this.looped + '\n'); //$NON-NLS-1$
+        out.append("Sustain Tick: " + this.sustainTick + '\n'); //$NON-NLS-1$
+        out.append("Loop Start Tick: " + this.loopStartTick + '\n'); //$NON-NLS-1$
+        out.append("Loop End Tick: " + this.loopEndTick + '\n'); //$NON-NLS-1$
+        out.append("Num Points: " + this.numPoints + '\n'); //$NON-NLS-1$
+        out.append("Points: "); //$NON-NLS-1$
         for (int point = 0; point < this.numPoints; point++) {
-            out.append("(" + this.pointsTick[point] + ", "
-                    + this.pointsAmpl[point] + "), ");
+            out.append("(" + this.pointsTick[point] + ", " //$NON-NLS-1$ //$NON-NLS-2$
+                    + this.pointsAmpl[point] + "), "); //$NON-NLS-1$
         }
         out.append('\n');
     }

@@ -33,7 +33,7 @@ public class MicroMod {
                         moduleData.length - offset);
                 if (len < 0) {
                     inputStream.close();
-                    throw new IOException("Unexpected end of file.");
+                    throw new IOException("Unexpected end of file."); //$NON-NLS-1$
                 }
                 offset += len;
             }

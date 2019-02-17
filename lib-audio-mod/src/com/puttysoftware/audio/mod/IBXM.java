@@ -4,7 +4,7 @@ package com.puttysoftware.audio.mod;
  ProTracker, Scream Tracker 3, FastTracker 2 Replay (c)2011 mumart@gmail.com
  */
 public class IBXM {
-    public static final String VERSION = "a61 (c)2011 mumart@gmail.com";
+    public static final String VERSION = "a61 (c)2011 mumart@gmail.com"; //$NON-NLS-1$
     private static final int OVERSAMPLE = 2;
     private final Module module;
     private final int[] rampBuffer;
@@ -28,7 +28,7 @@ public class IBXM {
         this.sampleRate = newSampleRate;
         this.interpolation = Channel.LINEAR;
         if (newSampleRate * IBXM.OVERSAMPLE < 16000) {
-            throw new IllegalArgumentException("Unsupported sampling rate!");
+            throw new IllegalArgumentException("Unsupported sampling rate!"); //$NON-NLS-1$
         }
         this.rampLen = 256;
         while (this.rampLen * 1024 > newSampleRate * IBXM.OVERSAMPLE) {
