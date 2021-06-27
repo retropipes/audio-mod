@@ -231,13 +231,15 @@ public class Module {
             final short[] sampleData = new short[loopStart + loopLength];
             if (sixteenBit) {
                 if (signedSamples) {
-                    for (int idx = 0, end = sampleData.length; idx < end; idx++) {
+                    for (int idx = 0,
+                            end = sampleData.length; idx < end; idx++) {
                         sampleData[idx] = (short) (moduleData[sampleOffset]
                                 & 0xFF | moduleData[sampleOffset + 1] << 8);
                         sampleOffset += 2;
                     }
                 } else {
-                    for (int idx = 0, end = sampleData.length; idx < end; idx++) {
+                    for (int idx = 0,
+                            end = sampleData.length; idx < end; idx++) {
                         final int sam = moduleData[sampleOffset] & 0xFF
                                 | (moduleData[sampleOffset + 1] & 0xFF) << 8;
                         sampleData[idx] = (short) (sam - 32768);
@@ -246,11 +248,13 @@ public class Module {
                 }
             } else {
                 if (signedSamples) {
-                    for (int idx = 0, end = sampleData.length; idx < end; idx++) {
+                    for (int idx = 0,
+                            end = sampleData.length; idx < end; idx++) {
                         sampleData[idx] = (short) (moduleData[sampleOffset++] << 8);
                     }
                 } else {
-                    for (int idx = 0, end = sampleData.length; idx < end; idx++) {
+                    for (int idx = 0,
+                            end = sampleData.length; idx < end; idx++) {
                         sampleData[idx] = (short) ((moduleData[sampleOffset++]
                                 & 0xFF) - 128 << 8);
                     }

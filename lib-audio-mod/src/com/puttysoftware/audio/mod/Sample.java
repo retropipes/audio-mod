@@ -73,8 +73,8 @@ public class Sample {
             outLoopLength *= 2;
         }
         // Extend loop for sinc interpolator.
-        for (int idx = outLoopStart + outLoopLength, end = idx
-                + Sample.FILTER_TAPS; idx < end; idx++) {
+        for (int idx = outLoopStart + outLoopLength,
+                end = idx + Sample.FILTER_TAPS; idx < end; idx++) {
             outSampleData[idx] = outSampleData[idx - outLoopLength];
         }
         this.sampleData = outSampleData;
